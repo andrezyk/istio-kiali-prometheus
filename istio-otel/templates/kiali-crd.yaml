@@ -1,0 +1,13 @@
+apiVersion: kiali.io/v1alpha1
+kind: Kiali
+metadata:
+  name: kiali
+  namespace: {{ .Values.kiali.namespace }}
+spec:
+  auth:
+    strategy: {{ .Values.kiali.auth_strategy }}
+  deployment:
+    accessible_namespaces: {{ .Values.kiali.accessible_namespaces }}
+    view_only_mode: false
+  server:
+    web_root: "/kiali"

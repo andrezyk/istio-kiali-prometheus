@@ -1,0 +1,7 @@
+prometheus:
+  namespace: istio-system
+
+kiali:
+  namespace: istio-system
+  auth_strategy: anonymous
+  accessible_namespaces: ["istio-system", "default"]

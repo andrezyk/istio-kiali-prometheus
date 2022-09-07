@@ -16,6 +16,7 @@ releases:
   namespace: istio-system
   chart: istio-charts/istiod
   wait: true
+  disableValidationOnInstall: true
 
 - name: kiali
   namespace: istio-system
@@ -31,8 +32,15 @@ releases:
   chart: istio-charts/gateway
   version: 1.15.0
   createNamespace: true
+  disableValidationOnInstall: true
 
 - name: kube-prometheus
   namespace: istio-system
   chart: bitnami/kube-prometheus
+  disableValidationOnInstall: true
+
+- name: istio-otel
+  namespace: istio-system
+  chart: istio-otel
+  wait: true
   disableValidationOnInstall: true
