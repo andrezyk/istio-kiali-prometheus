@@ -1,0 +1,38 @@
+repositories:
+  - name: istio-charts
+    url: https://istio-release.storage.googleapis.com/charts
+  - name: kiali
+    url: https://kiali.org/helm-charts
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+
+releases:
+- name: base
+  namespace: istio-system
+  createNamespace: true
+  chart: istio-charts/base
+
+- name: istiod
+  namespace: istio-system
+  chart: istio-charts/istiod
+  wait: true
+
+- name: kiali
+  namespace: istio-system
+  chart: kiali/kiali-operator
+  version: 1.56.0
+  wait: true
+  values:
+    - cr.create: true
+    - cr.namespace: istio-systems
+
+- name: istio-ingress
+  namespace: istio-ingress
+  chart: istio-charts/gateway
+  version: 1.15.0
+  createNamespace: true
+
+- name: kube-prometheus
+  namespace: istio-system
+  chart: bitnami/kube-prometheus
+  disableValidationOnInstall: true
